@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet/less" type="text/css" href="style.less" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Teko&display=swap"
+    rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/3.12.2/less.min.js"></script>
+  <title>Air Soccer</title>
+
+  <audio id="kickSound" src="Sounds/sound-ball-kick.wav"></audio>
+  <audio id="crowdCheerSound" src="Sounds/sound-crowd-cheer.mp3"></audio>
+  <audio id="startWhistle" src="Sounds/sound-goal-whistle.wav"></audio>
+  <audio id="goalSound" src="Sounds/sound-goal.wav"></audio>
+  <audio id="hitSound" src="Sounds/sound-hit.wav"></audio>
+  <audio id="matchEndSound" src="Sounds/sound-match-whistle.wav"></audio>
+  <audio id="matchSound" src="Sounds/sound-match.mp3"></audio>
+  <audio id="winSound" src="Sounds/sound-win.mp3"></audio>
+  <audio id="goalNetSound" src="Sounds/sound-goal-net.wav"></audio>
+  <audio id="countdownSound" src="Sounds/countdown.wav"></audio>
+  <audio id="menuSound" src="Sounds/UEFA Champions League Anthem (Full Version) (320kbps).mp3"></audio>
+</head>
+
+<body>
+  <div class="container">
+    <div class="game-info">
+      <div class="score">
+        <div class="player-name" id="player-one-name">
+          PLAYER 1
+        </div>
+        <div class="player-score" id="player-one-score">0</div>
+        <div class="player-score" id="player-two-score">0</div>
+        <div class="player-name" id="player-two-name">PLAYER 2</div>
+      </div>
+      <div class="game-time" id="text-game-time">0:00</div>
+
+      <div class="alerts" id="game-alerts"></div>
+    </div>
+
+    <div class="table">
+      <div class="table-inner">
+        <span class="table__goal-crease rectangle"></span>
+        <span class="table__goal-crease--three rectangle">
+          <span class="table__circle-dot--two"></span>
+        </span>
+        <span class="table__goal-semicircle semicircle"></span>
+        <span class="table__circle-corner table__circle-corner--top-left circle"></span>
+        <span class="table__circle-corner table__circle-corner--bottom-left circle"></span>
+        <span class="table__center-line"></span>
+        <span class="circle">
+          <span class="table__circle-dot"></span>
+        </span>
+        <span class="table__circle-corner table__circle-corner--top-right circle"></span>
+        <span class="table__circle-corner table__circle-corner--bottom-right circle"></span>
+        <span class="table__goal-semicircle--two semicircle"></span>
+        <span class="table__goal-crease--four rectangle"></span>
+        <span class="table__goal-crease table__goal-crease--two rectangle">
+          <span class="table__circle-dot--three"></span>
+        </span>
+      </div>
+    </div>
+    <canvas id="canvas" class="table table--canvas" tabindex="0"></canvas>
+
+
+
+    <div class="game-settings">
+      <input class="set-player-name" id="set-player-one-name" type="text" placeholder="PLAYER 1 NAME">
+      <input class="set-player-name" id="set-player-two-name" type="text" placeholder="PLAYER 2 NAME">
+
+      <div id="bot">
+
+        <input type="checkbox" id="player-vs-computer">
+        <label for="player-vs-computer">1 vs Computer</label>
+      </div>
+
+
+      <button class="button" id="start">START</button>
+      <button class="button" id="reset">RESET</button>
+      <button class="button" id="restart">RESTART</button>
+
+
+      <div class="time-buttons">
+        <button class="button add-game-time">+10s</button>
+        <button class="button substract-game-time">-10s</button>
+      </div>
+
+    </div>
+
+    <div class="game-controls">
+      PLAYER 1
+      <div id="player-one-controls">
+        <div>
+          <img src="Images/controls-wasd.png" id="controls-wasd" alt="controls for PLAYER 1 - WASD" width="280px">
+        </div>
+      </div>
+
+      PLAYER 2
+      <div id="player-two-controls">
+        <div>
+          <img src="Images/controls-arrows.png" id="controls-arrows" alt="controls for PLAYER 2 - ARROWS" width="280px">
+        </div>
+      </div>
+
+    </div>
+
+    <script src="script.js"></script>
+  </div>
+</body>
+
+</html>

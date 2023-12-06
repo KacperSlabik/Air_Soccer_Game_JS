@@ -1,0 +1,515 @@
+// Colors
+@white: fade(white, 75%);
+@black: #2e2e2e;
+@grey: #f1f0f4;
+@grey-dark: #7a7a7a;
+@green: rgb(114, 168, 51);
+
+// Table
+@table-width: 1400px;
+@table-height: 750px;
+@table-border: 15px;
+@table-border-2x: @table-border * 2;
+
+@line-width: 5px;
+@white-line-pos: 37%;
+@circle-center-size: 140px;
+@circle-dot: 15px;
+@goal-size: 250px;
+
+@circle-corner-size: 100px;
+@circle-corner-pos: 1%;
+@circle-goal-size: 90px;
+
+* {
+	height: 100% auto;
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+	font-family: 'Teko', sans-serif;
+}
+
+body {
+	font-family: helvetica;
+	background-image: url('Images/background.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+a {
+	color: @grey-dark;
+	text-decoration: none;
+	transition: 0.3s opacity ease-out;
+
+	&:hover,
+	&:focus {
+		opacity: 0.6;
+	}
+}
+
+.circle {
+	width: @circle-center-size;
+	height: @circle-center-size;
+	border-radius: 100%;
+	border: @line-width solid @white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -(@circle-center-size / 2);
+	margin-left: -(@circle-center-size / 2);
+}
+
+.semicircle {
+	border-radius: 0;
+	height: 50px !important;
+	width: 100px !important;
+	border-top-right-radius: 50% 100%;
+	border-top-left-radius: 50% 100%;
+	border: @line-width solid @white;
+	position: absolute;
+}
+
+.table__goal-semicircle {
+	top: 0;
+	margin-top: @table-height / 2 - 40px;
+	margin-left: @goal-size - 60px;
+	transform: rotate(90deg);
+}
+
+.table__goal-semicircle--two {
+	top: 0;
+	right: 0;
+	margin-top: @table-height / 2 - 40px;
+	margin-right: @goal-size - 60px;
+	transform: rotate(-90deg);
+}
+
+.rectangle {
+	width: @circle-center-size;
+	height: @circle-center-size;
+	border: @line-width solid @white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -(@circle-center-size / 2);
+	margin-left: -(@circle-center-size / 2);
+}
+
+// Table
+.table {
+	width: @table-width;
+	height: @table-height;
+	margin-top: -(@table-height / 2);
+	margin-left: -(@table-width / 2);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border: @table-border solid @black;
+	border-radius: 70px;
+	background-color: @green;
+	box-shadow: inset 0 2px 5px 0 rgba(50, 50, 50, 0.25);
+
+	&:before,
+	&:after {
+		content: '';
+		position: absolute;
+		background-color: @grey-dark;
+		width: @table-border;
+		height: @goal-size;
+		top: 50%;
+		left: -@table-border;
+		margin-top: -(@goal-size / 2);
+	}
+
+	&:after {
+		left: auto;
+		right: -@table-border;
+		background: linear-gradient(to right, #0088cc, #006699);
+	}
+
+	&:before {
+		background: linear-gradient(to right, #ff0000, #cc0000);
+	}
+}
+
+.table--canvas {
+	width: @table-width - @table-border-2x;
+	height: @table-height - @table-border-2x;
+	margin-top: -((@table-height - @table-border-2x) / 2);
+	margin-left: -((@table-width - @table-border-2x) / 2);
+	background-color: transparent;
+	border-radius: 55px;
+	border: 5px solid white;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+.table-inner {
+	overflow: hidden;
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.table__center-line {
+	width: @line-width;
+	height: 100%;
+	background-color: @white;
+	position: absolute;
+	left: 50%;
+	margin-left: -(@line-width / 2);
+}
+
+.table__circle-dot {
+	position: absolute;
+	height: @circle-dot;
+	width: @circle-dot;
+	left: 50%;
+	top: 50%;
+	background-color: white;
+	border-radius: 100%;
+	margin-left: -(@circle-dot / 2);
+	margin-top: -(@circle-dot / 2);
+	// margin-left: -10px;
+	// margin-top: -10px;
+}
+
+.table__circle-dot--two {
+	position: absolute;
+	height: @circle-dot;
+	width: @circle-dot;
+	left: 0;
+	top: 50%;
+	background-color: white;
+	border-radius: 100%;
+	margin-left: @goal-size + 35px;
+	margin-top: -(@circle-dot / 2);
+	// margin-left: -10px;
+	// margin-top: -10px;
+}
+
+.table__circle-dot--three {
+	position: absolute;
+	height: @circle-dot;
+	width: @circle-dot;
+	right: 0;
+	top: 50%;
+	background-color: white;
+	border-radius: 100%;
+	margin-top: -(@circle-dot / 2);
+	margin-right: @goal-size + 35px;
+}
+
+// Corner circles
+.table__circle-corner {
+	width: @circle-corner-size;
+	height: @circle-corner-size;
+	border-color: @white;
+	position: absolute;
+}
+
+.table__circle-corner--top-left {
+	margin-top: -(@circle-corner-size / 2);
+	margin-left: -(@circle-corner-size / 2);
+	left: @circle-corner-pos;
+	top: @circle-corner-pos;
+}
+
+.table__circle-corner--top-right {
+	margin-top: -(@circle-corner-size / 2);
+	margin-right: -(@circle-corner-size / 2);
+	right: @circle-corner-pos;
+	top: @circle-corner-pos;
+	left: auto;
+}
+
+.table__circle-corner--bottom-left {
+	margin-bottom: -(@circle-corner-size / 2);
+	margin-left: -(@circle-corner-size / 2);
+	left: @circle-corner-pos;
+	bottom: @circle-corner-pos;
+	top: auto;
+}
+
+.table__circle-corner--bottom-right {
+	margin-bottom: -(@circle-corner-size / 2);
+	margin-right: -(@circle-corner-size / 2);
+	right: @circle-corner-pos;
+	bottom: @circle-corner-pos;
+	left: auto;
+	top: auto;
+}
+
+// Goal creases
+.table__goal-crease {
+	left: 0;
+	margin-top: -(@goal-size / 2);
+	margin-left: -(@goal-size / 2) - (@table-border / 2);
+	width: @goal-size;
+	height: @goal-size;
+	background-color: fade(rgb(41, 77, 0), 25%);
+}
+
+.table__goal-crease--two {
+	left: auto;
+	margin-left: auto;
+	right: 0;
+	width: @goal-size;
+	height: @goal-size;
+	margin-top: -(@goal-size / 2);
+	margin-right: -(@goal-size / 2) - (@table-border / 2);
+}
+
+.table__goal-crease--three {
+	left: 0;
+	margin-top: -(@goal-size / 2 + 100px);
+	margin-left: -(@goal-size / 2) - (@table-border / 2);
+	width: @goal-size + 100px;
+	height: @goal-size + 200px;
+}
+
+.table__goal-crease--four {
+	left: auto;
+	margin-left: auto;
+	right: 0;
+	width: @goal-size + 100px;
+	height: @goal-size + 200px;
+	margin-top: -(@goal-size / 2 + 100px);
+	margin-right: -(@goal-size / 2) - (@table-border / 2);
+}
+
+.table__goal-circle {
+	width: @circle-goal-size;
+	height: @circle-goal-size;
+	left: 0;
+	margin-top: -(@circle-goal-size / 2);
+	margin-left: (@circle-goal-size / 2 - 5);
+}
+
+.table__goal-circle--two {
+	width: @circle-goal-size;
+	height: @circle-goal-size;
+	right: 0;
+	margin-top: -(@circle-goal-size / 2);
+	margin-left: auto;
+	margin-right: (@circle-goal-size / 2 - 5);
+}
+
+// Faceoff circles
+
+.message {
+	position: absolute;
+	text-align: center;
+	font-weight: bold;
+	top: -60px;
+	width: 100%;
+	font-size: 18px;
+	padding-top: 15px;
+}
+
+.container {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.game-info {
+	margin-top: 3%;
+	width: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.game-time {
+	width: 200px;
+	display: flex;
+	justify-content: center;
+	font-size: 48px;
+	border-left: 5px solid white;
+	border-right: 5px solid white;
+	border-bottom: 5px solid white;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	background-color: white;
+}
+
+.player-name {
+	width: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 48px;
+}
+
+#player-one-name {
+	border: 5px solid red;
+	border-top-left-radius: 30px;
+	border-bottom-left-radius: 30px;
+	color: red;
+}
+
+#player-two-name {
+	border: 5px solid #006699;
+	border-top-right-radius: 30px;
+	border-bottom-right-radius: 30px;
+	color: #006699;
+}
+
+#player-two-score {
+	background: linear-gradient(to right, #0088cc, #006699);
+	color: white;
+	border: 10px solid #006699;
+	border-style: outset;
+}
+
+#player-one-score {
+	background: linear-gradient(to right, #ff0000, #cc0000);
+	color: white;
+	border: 10px solid red;
+	border-style: outset;
+}
+
+.player-score {
+	width: 100px;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.score {
+	width: 800px;
+	height: 86px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 48px;
+	border: 5px solid black;
+	border-radius: 50px;
+	background-color: white;
+}
+
+.alerts {
+	width: 600px;
+	display: flex;
+	justify-content: center;
+	font-size: 80px;
+	color: yellow;
+	margin-top: 5%;
+}
+
+.game-settings {
+	height: 600px;
+	width: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	background-color: fade(white, 50);
+	border: 5px solid white;
+	border-radius: 20px;
+	position: absolute;
+	top: 29%;
+	left: 5%;
+}
+
+.game-settings:hover,
+.game-controls:hover {
+	border-color: green;
+	transition: 0.2s;
+	box-shadow: 3px 3px 3px 3px inset greenyellow;
+}
+
+.set-player-name {
+	width: 200px;
+	height: 50px;
+	font-size: 32px;
+	text-align: center;
+}
+
+.button {
+	border: 5px solid black;
+	background: white;
+	border-radius: 20px;
+	padding: 15px;
+	width: 200px;
+	font-size: 32px;
+	text-align: center;
+}
+
+button:hover {
+	border-color: green;
+	color: green;
+	padding: 20px;
+	font-size: 38px;
+	transition: 0.2s;
+	box-shadow: 5px 5px 5px 5px initial inset greenyellow;
+}
+
+#bot {
+	width: 200px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	font-size: 38px;
+}
+
+#player-vs-computer {
+	transform: scale(3);
+}
+
+#restart {
+	display: none;
+}
+
+.game-controls {
+	height: 600px;
+	width: 320px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	background-color: fade(white, 50);
+	border: 5px solid white;
+	border-radius: 20px;
+	position: absolute;
+	top: 29%;
+	right: 5%;
+	font-size: 32px;
+}
+
+#player-one-controls {
+	width: 290px;
+	height: 202px;
+	border: 5px solid;
+	border-color: red;
+	transition: 0.2s;
+	box-shadow: 3px 3px 3px 3px red;
+}
+
+#player-two-controls {
+	width: 290px;
+	height: 208px;
+	border: 5px solid;
+	border-color: #006699;
+	transition: 0.2s;
+	box-shadow: 3px 3px 3px 3px #006699;
+}
+
+.time-buttons {
+	width: 250px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.substract-game-time,
+.add-game-time {
+	width: 90px;
+	text-align: center;
+}
